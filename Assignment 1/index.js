@@ -2,14 +2,20 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fileOps_1 = require("./fileOps");
 const shuffle_1 = require("./shuffle");
+const selectSort_1 = require("./selectSort");
 //1st read items array whilst cleaning them
-const filepath = 'miniMagicItems.txt'; //mini version of magicItems.txt only containing 15 strings used for testing purposes
-//const filepath = 'magicItems.txt'
+//const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
+const filepath = 'magicItems.txt';
 const items = (0, fileOps_1.readFileToArray)(filepath);
 // console.log(items) // for testing but its annoying me 
 const shuffledItems = (0, shuffle_1.shuffle)(items);
-console.log(shuffledItems);
+if (items.length === shuffledItems.length) {
+    console.log("all " + shuffledItems.length + " items are shuffled\nnow for sorting");
+}
+let selectSortedItems = (0, selectSort_1.selectionSort)(shuffledItems); // SELECT SORT DRIVER CODE
+console.log(selectSortedItems);
 /*
+
 let palendromes = [] // this will be used to save me tears, will be cut later
 
 //2nd send those items into the dataStructures, where itll make each letter a node then push it into the stack / queue
