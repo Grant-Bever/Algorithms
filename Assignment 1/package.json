@@ -4,7 +4,7 @@
   "description": "magicItemsSort",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node src/index.ts"
   },
   "author": "Grant-Bever",
   "license": "MIT",

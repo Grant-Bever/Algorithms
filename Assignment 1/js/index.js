@@ -1,27 +1,23 @@
-import { readFileToArrayDataStructures } from './fileOps';
-import { readFileToArraySort } from './fileOps';
-import { processItemsWithStackQueue, Queue, Stack } from './dataStructure'
-import { shuffle } from './shuffle';
-import { selectionSort } from './selectSort';
-import { insertionSort } from './insertSort';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const fileOps_1 = require("./fileOps");
+const fileOps_2 = require("./fileOps");
+const shuffle_1 = require("./shuffle");
+const insertSort_1 = require("./insertSort");
 //1st read items array whilst cleaning them
-
 //const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
-const filepath = 'magicItems.txt'
-const dataItems = readFileToArrayDataStructures(filepath);
-const sortItems = readFileToArraySort(filepath);
-
+const filepath = './src/text/magicItems.txt';
+const dataItems = (0, fileOps_1.readFileToArrayDataStructures)(filepath);
+const sortItems = (0, fileOps_2.readFileToArraySort)(filepath);
 // console.log(items) // for testing but its annoying me 
-const shuffledItems = shuffle(sortItems)
-if (sortItems.length === shuffledItems.length){
-    console.log("all " + shuffledItems.length + " items are shuffled\nnow for sorting")
+const shuffledItems = (0, shuffle_1.shuffle)(sortItems);
+if (sortItems.length === shuffledItems.length) {
+    console.log("all " + shuffledItems.length + " items are shuffled\nnow for sorting");
 }
-
 //let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
 //console.log(selectSortedItems);
-let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
-console.log(insertionSortedItems)
+let insertionSortedItems = (0, insertSort_1.insertionSort)(shuffledItems); // INSERTION SORT DRIVER CODE
+console.log(insertionSortedItems);
 /*
 
 let palendromes = [] // this will be used to save me tears, will be cut later
@@ -29,7 +25,7 @@ let palendromes = [] // this will be used to save me tears, will be cut later
 //2nd send those items into the dataStructures, where itll make each letter a node then push it into the stack / queue
 for (let i = 0; i < items.length; i++) {
     const word = items[i];
-    const { stack, queue } = processItemsWithStackQueue(word);  
+    const { stack, queue } = processItemsWithStackQueue(word);
 
     // Compare the stack and queue to check for a palindrome
     if (compareStackQueue(stack, queue)) {
@@ -59,4 +55,4 @@ function makeSureIDidThisCorrectly(palendromes: string | any[]){
         console.log("sleep is totally overrated anyway")
     }
 }
-*/
+*/ 

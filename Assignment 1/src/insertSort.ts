@@ -1,4 +1,3 @@
-
 //should average around 110,000 comparisons
 export function insertionSort(items: string[]){
     let comparisons = 0
