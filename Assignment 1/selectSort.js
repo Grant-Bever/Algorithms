@@ -6,11 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.selectionSort = void 0;
 //I just realized that the strings coming into here have no caps and no spaces... I should probably change that... ugh
 function selectionSort(items) {
-    let comparrisons = 0;
+    let comparisons = 0;
     for (let i = 0; i < items.length - 1; i++) { // i loop
         let smallNum = i;
         for (let j = i + 1; j < items.length; j++) { // j loop
-            comparrisons++;
+            comparisons++;
             if (items[j] < items[smallNum]) {
                 smallNum = j;
             }
@@ -19,7 +19,7 @@ function selectionSort(items) {
             [items[i], items[smallNum]] = [items[smallNum], items[i]];
         }
     } // end j loop 
-    console.log("Selection sort had", comparrisons, "comparrisons");
+    console.log("Selection sort had", comparisons, "comparrisons");
     return items;
 }
 exports.selectionSort = selectionSort;

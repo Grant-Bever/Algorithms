@@ -1,19 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const fileOps_1 = require("./fileOps");
+const fileOps_2 = require("./fileOps");
 const shuffle_1 = require("./shuffle");
-const selectSort_1 = require("./selectSort");
+const insertSort_1 = require("./insertSort");
 //1st read items array whilst cleaning them
 //const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
 const filepath = 'magicItems.txt';
-const items = (0, fileOps_1.readFileToArray)(filepath);
+const dataItems = (0, fileOps_1.readFileToArrayDataStructures)(filepath);
+const sortItems = (0, fileOps_2.readFileToArraySort)(filepath);
 // console.log(items) // for testing but its annoying me 
-const shuffledItems = (0, shuffle_1.shuffle)(items);
-if (items.length === shuffledItems.length) {
+const shuffledItems = (0, shuffle_1.shuffle)(sortItems);
+if (sortItems.length === shuffledItems.length) {
     console.log("all " + shuffledItems.length + " items are shuffled\nnow for sorting");
 }
-let selectSortedItems = (0, selectSort_1.selectionSort)(shuffledItems); // SELECT SORT DRIVER CODE
-console.log(selectSortedItems);
+//let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
+//console.log(selectSortedItems);
+let insertionSortedItems = (0, insertSort_1.insertionSort)(shuffledItems); // INSERTION SORT DRIVER CODE
+console.log(insertionSortedItems);
 /*
 
 let palendromes = [] // this will be used to save me tears, will be cut later

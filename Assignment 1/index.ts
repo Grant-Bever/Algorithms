@@ -1,21 +1,27 @@
-import { readFileToArray } from './fileOps';
+import { readFileToArrayDataStructures } from './fileOps';
+import { readFileToArraySort } from './fileOps';
 import { processItemsWithStackQueue, Queue, Stack } from './dataStructure'
 import { shuffle } from './shuffle';
 import { selectionSort } from './selectSort';
+import { insertionSort } from './insertSort';
 
 //1st read items array whilst cleaning them
 
 //const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
 const filepath = 'magicItems.txt'
-const items = readFileToArray(filepath);
+const dataItems = readFileToArrayDataStructures(filepath);
+const sortItems = readFileToArraySort(filepath);
+
 // console.log(items) // for testing but its annoying me 
-const shuffledItems = shuffle(items)
-if (items.length === shuffledItems.length){
+const shuffledItems = shuffle(sortItems)
+if (sortItems.length === shuffledItems.length){
     console.log("all " + shuffledItems.length + " items are shuffled\nnow for sorting")
 }
 
-let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
-console.log(selectSortedItems);
+//let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
+//console.log(selectSortedItems);
+let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
+console.log(insertionSortedItems)
 /*
 
 let palendromes = [] // this will be used to save me tears, will be cut later
