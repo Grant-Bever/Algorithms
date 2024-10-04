@@ -13,3 +13,4 @@ export function readFileToArray(filePath: string): string[] {
     return [];
   }
 }
+

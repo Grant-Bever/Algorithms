@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.processItemsWithStackQueue = exports.Queue = exports.Stack = void 0;
-//needs cleaning badly not even sure it works. Edit: It works!
+//needs cleaning not even sure it works. Edit: It works!
 class node {
     constructor(data) {
         this.data = data;
@@ -75,11 +75,12 @@ exports.Queue = Queue;
 function processItemsWithStackQueue(word) {
     const stack = new Stack();
     const queue = new Queue();
-    // Split the word into individual characters and process each letter
+    // Splits into letters and pushes and enqueues it
     for (const letter of word) {
         stack.push(letter);
         queue.enqueue(letter);
     }
+    // back to index
     return { stack, queue };
 }
 exports.processItemsWithStackQueue = processItemsWithStackQueue;
