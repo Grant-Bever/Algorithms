@@ -2,7 +2,7 @@ import { readFileToArray } from './fileOps';
 import { processItemsWithStackQueue, Queue, Stack } from './dataStructure'
 import { shuffle } from './shuffle';
 
-//1st read items into array whilst cleaning them
+//1st read items array whilst cleaning them
 
 const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
 //const filepath = 'magicItems.txt'

@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shuffle = void 0;
 //Knuth shuffle
-//Works by randomly selecting items from the array and swaps it into a "shuffled zone" 
+//Works by randomly selecting items from the array and swaps it into a "shuffled zone" thats at the end of the array
 function shuffle(items) {
-    for (let i = items.length; i > 0; i--) {
+    for (let i = items.length - 1; i > 1; i--) {
         const j = Math.floor(Math.random() * (i + 1));
+        console.log(j);
         [items[i], items[j]] = [items[j], items[i]];
     }
-    return items;
+    return items; //should i be using a better name than items? it feels reductive but its also not
 }
 exports.shuffle = shuffle;

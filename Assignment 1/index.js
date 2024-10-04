@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const fileOps_1 = require("./fileOps");
 const shuffle_1 = require("./shuffle");
-//1st read items into array whilst cleaning them
+//1st read items array whilst cleaning them
 const filepath = 'miniMagicItems.txt'; //mini version of magicItems.txt only containing 15 strings used for testing purposes
 //const filepath = 'magicItems.txt'
 const items = (0, fileOps_1.readFileToArray)(filepath);
