@@ -1,5 +1,6 @@
-import * as DS from "./dataStructure";
 import * as fs from 'fs';
+
+// Takes the magic items txt, cleans it up, and sends it on through. Nothing fancy
 
 export function readFileToArray(filePath: string): string[] {
   try {

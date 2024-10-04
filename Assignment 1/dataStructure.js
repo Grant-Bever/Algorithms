@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Queue = exports.Stack = void 0;
+exports.processItemsWithStackQueue = exports.Queue = exports.Stack = void 0;
+//needs cleaning badly not even sure it works. Edit: It works!
 class node {
     constructor(data) {
         this.data = data;
@@ -11,13 +12,13 @@ class Stack {
     constructor() {
         this.top = null;
     }
-    // Push a new element to the top of the stack
+    // FIRST IN 
     push(data) {
         const newNode = new node(data);
         newNode.next = this.top;
         this.top = newNode;
     }
-    // Pop the top element from the stack
+    // FIRST OUT
     pop() {
         if (this.top === null)
             return null;
@@ -25,40 +26,60 @@ class Stack {
         this.top = this.top.next;
         return poppedNode.data;
     }
-    // Check if the stack is empty
     isEmpty() {
-        return this.top === null;
+        if (this.top === null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 exports.Stack = Stack;
 class Queue {
     constructor() {
-        this.front = this.rear = null; // The queue starts empty
+        this.front = null;
+        this.rear = null;
     }
-    // Add a new string to the rear of the queue
+    //LAST IN
     enqueue(data) {
         const newNode = new node(data);
-        if (this.rear === null) { // If queue is empty
-            this.front = this.rear = newNode; // The new node is both front and rear
+        if (this.rear === null) {
+            this.front = this.rear = newNode;
         }
         else {
-            this.rear.next = newNode; // Link current rear to the new node
-            this.rear = newNode; // Set the new node as the rear
+            this.rear.next = newNode;
+            this.rear = newNode;
         }
     }
-    // Remove and return the front element from the queue
+    //FIRST OUT
     dequeue() {
         if (this.front === null)
-            return null; // If queue is empty, return null
+            return null; // If queue is empty, then... its empty
         const dequeuedNode = this.front;
-        this.front = this.front.next; // Move front to the next node
+        this.front = this.front.next;
         if (this.front === null)
-            this.rear = null; // If queue is now empty
-        return dequeuedNode.data; // Return the dequeued data
+            this.rear = null;
+        return dequeuedNode.data;
     }
-    // Check if the queue is empty
     isEmpty() {
-        return this.front === null; // Return true if there's no front node
+        if (this.front === null) {
+            return true;
+        }
+        else
+            return false;
     }
 }
 exports.Queue = Queue;
+// Refer to 3rd step on index.ts (line 27)
+function processItemsWithStackQueue(word) {
+    const stack = new Stack();
+    const queue = new Queue();
+    // Split the word into individual characters and process each letter
+    for (const letter of word) {
+        stack.push(letter);
+        queue.enqueue(letter);
+    }
+    return { stack, queue };
+}
+exports.processItemsWithStackQueue = processItemsWithStackQueue;

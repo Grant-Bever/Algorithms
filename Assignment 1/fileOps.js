@@ -25,11 +25,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readFileToArray = void 0;
 const fs = __importStar(require("fs"));
-// Function to read a file and return an array of strings (one per line)
+// Takes the magic items txt, cleans it up, and sends it on through. Nothing fancy
 function readFileToArray(filePath) {
     try {
         const data = fs.readFileSync(filePath, 'utf-8');
-        // Split the file contents by new lines and trim each line
         const lines = data.split('\n').map(line => line.trim()).filter(line => line.length > 0).map(line => line.replace(/\s+/g, '').toLowerCase());
         return lines;
     }

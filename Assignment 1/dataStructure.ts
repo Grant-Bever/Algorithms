@@ -1,5 +1,4 @@
-//needs cleaning badly not even sure it works
-
+//needs cleaning not even sure it works. Edit: It works!
 class node {
     data: string;
     next: node | null;
@@ -10,22 +9,21 @@ class node {
     }
   }
 
-//reminder to decide if I even need the export here
-//probably best to do that work here then send final product to index for comparrison. 
 export class Stack {
   top: node | null;
  
   constructor() {
     this.top = null;
-    }
-    // REMINDER FIRST IN FIRST OUT!!!!
-    // Push a new element to the top of the stack
+  }
+
+  // FIRST IN 
   push(data: string): void {
     const newNode = new node(data);
     newNode.next = this.top;
     this.top = newNode;
     }
   
+  // FIRST OUT
   pop(): string | null {
     if (this.top === null) return null;
     const poppedNode = this.top;
@@ -34,21 +32,23 @@ export class Stack {
     }
   
   isEmpty(): boolean {
-    return this.top === null;
+    if (this.top === null){
+      return true
+    }else{
+      return false
+    }
     }
   }
 
-// refer to line 13 and 14 for my export confusion
 export class Queue {
   front: node | null; 
   rear: node | null; 
 
   constructor() {
     this.front = null;
-    this.rear = null; //probably going to give an error
+    this.rear = null; 
   }
-  // REMINDER LAST IN FIRST OUT
-  // Add a new string to the rear of the queue
+  //LAST IN
   enqueue(data: string): void {
     const newNode = new node(data);
     if (this.rear === null) {        
@@ -58,9 +58,9 @@ export class Queue {
       this.rear = newNode;           
     }
   }
-
+  //FIRST OUT
   dequeue(): string | null {
-    if (this.front === null) return null; // If queue is empty, return null
+    if (this.front === null) return null; // If queue is empty, then... its empty
     const dequeuedNode = this.front;
     this.front = this.front.next;         
     if (this.front === null) this.rear = null; 
@@ -68,7 +68,23 @@ export class Queue {
   }
 
   isEmpty(): boolean {
-    return this.front === null; // Return true if there's no front node
+    if (this.front === null){
+      return true
+    }else
+    return false 
   }
 }
-  
+
+// Refer to 3rd step on index.ts (line 27)
+export function processItemsWithStackQueue(word: string): { stack: Stack, queue: Queue } {
+  const stack = new Stack();
+  const queue = new Queue();
+
+  // Splits into letters and pushes and enqueues it
+  for (const letter of word) {
+    stack.push(letter);
+    queue.enqueue(letter);
+  }
+  // back to index
+  return { stack, queue };
+}
