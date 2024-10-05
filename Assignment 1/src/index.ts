@@ -6,6 +6,8 @@ import { selectionSort } from './selectSort';
 import { insertionSort } from './insertSort';
 import { mergeSort } from './mergeSort';
 import { mergeComparison } from './mergeSort';
+import { quickSort } from './quickSort';
+import { qsComparison } from './quickSort';
 
 //1st read items array whilst cleaning them
 
@@ -24,9 +26,13 @@ if (sortItems.length === shuffledItems.length){
 //console.log(selectSortedItems);
 //let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
 //console.log(insertionSortedItems)
-let mergeSortedItems = mergeSort(shuffledItems)
-console.log(mergeSortedItems)
-mergeComparison()
+//let mergeSortedItems = mergeSort(shuffledItems)         // MERGE SORT DRIVER CODE
+//console.log(mergeSortedItems)
+//mergeComparison()
+
+let quickSortedItems = quickSort(shuffledItems)         // QUICK SORT DRIVER CODE
+qsComparison()
+console.log(quickSortedItems)
 
 /*
 

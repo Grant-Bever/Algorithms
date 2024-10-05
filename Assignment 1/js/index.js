@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fileOps_1 = require("./fileOps");
 const fileOps_2 = require("./fileOps");
 const shuffle_1 = require("./shuffle");
-const mergeSort_1 = require("./mergeSort");
-const mergeSort_2 = require("./mergeSort");
+const quickSort_1 = require("./quickSort");
+const quickSort_2 = require("./quickSort");
 //1st read items array whilst cleaning them
 //const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
 const filepath = './src/text/magicItems.txt';
@@ -19,9 +19,12 @@ if (sortItems.length === shuffledItems.length) {
 //console.log(selectSortedItems);
 //let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
 //console.log(insertionSortedItems)
-let mergeSortedItems = (0, mergeSort_1.mergeSort)(shuffledItems);
-console.log(mergeSortedItems);
-(0, mergeSort_2.mergeComparison)();
+//let mergeSortedItems = mergeSort(shuffledItems)         // MERGE SORT DRIVER CODE
+//console.log(mergeSortedItems)
+//mergeComparison()
+let quickSortedItems = (0, quickSort_1.quickSort)(shuffledItems); // QUICK SORT DRIVER CODE
+(0, quickSort_2.qsComparison)();
+console.log(quickSortedItems);
 /*
 
 let palendromes = [] // this will be used to save me tears, will be cut later
