@@ -27,7 +27,7 @@ function merge(left: string[], right: string[]): string[] {
         rightIndex++;
       }
     }
-  
+
     return sortedItems
            .concat(left.slice(leftIndex))
            .concat(right.slice(rightIndex));

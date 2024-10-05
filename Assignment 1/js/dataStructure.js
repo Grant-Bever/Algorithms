@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.processItemsWithStackQueue = exports.Queue = exports.Stack = void 0;
-//needs cleaning not even sure it works. Edit: It works!
 class node {
     constructor(data) {
         this.data = data;
@@ -12,7 +11,7 @@ class Stack {
     constructor() {
         this.top = null;
     }
-    // FIRST IN 
+    // LAST IN 
     push(data) {
         const newNode = new node(data);
         newNode.next = this.top;
@@ -41,7 +40,7 @@ class Queue {
         this.front = null;
         this.rear = null;
     }
-    //LAST IN
+    // FIRST IN
     enqueue(data) {
         const newNode = new node(data);
         if (this.rear === null) {
@@ -52,7 +51,7 @@ class Queue {
             this.rear = newNode;
         }
     }
-    //FIRST OUT
+    // FIRST OUT
     dequeue() {
         if (this.front === null)
             return null; // If queue is empty, then... its empty

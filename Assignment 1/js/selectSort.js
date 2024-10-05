@@ -4,7 +4,6 @@
 //O(n^2), n(n-1) / 2 with n = 666 should be 221595 but its 221445 so im probably getting a weird off by one error
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.selectionSort = void 0;
-//I just realized that the strings coming into here have no caps and no spaces... I should probably change that... ugh
 function selectionSort(items) {
     let comparisons = 0;
     for (let i = 0; i < items.length - 1; i++) { // i loop
