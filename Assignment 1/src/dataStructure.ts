@@ -1,4 +1,3 @@
-//needs cleaning not even sure it works. Edit: It works!
 class node {
     data: string;
     next: node | null;

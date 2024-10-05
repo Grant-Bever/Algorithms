@@ -9,47 +9,28 @@ import { mergeComparison } from './mergeSort';
 import { quickSort } from './quickSort';
 import { qsComparison } from './quickSort';
 
-//1st read items array whilst cleaning them
 
-//const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
+// Hello Prof. Labouseur if you run npm start into the terminal as the code is it will show you the palendromes and the number of comparisons for the 4 sorts but it will not print the sorted arrays.
+// if you would like to completely fill up the screen with the sorted arrays so you can check if it works. Set the boolean below to true (you may have to run tsc before a subsequent npm start)
+
+let fillUpTerminal:boolean = false
+
 const filepath = './src/text/magicItems.txt'
-const dataItems = readFileToArrayDataStructures(filepath);
-const sortItems = readFileToArraySort(filepath);
+//1st bring magic items from file into array whilst cleaning it up
+const dataItems = readFileToArrayDataStructures(filepath);      //two seperate arrays, this one is meant for the palendromes, I decided to make two since I wanted spaces and caps for the sort
+const sortItems = readFileToArraySort(filepath); 
 
-// console.log(items) // for testing but its annoying me 
-const shuffledItems = shuffle(sortItems)
-if (sortItems.length === shuffledItems.length){
-    console.log("all " + shuffledItems.length + " items are shuffled\nnow for sorting")
-}
-
-//let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
-//console.log(selectSortedItems);
-//let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
-//console.log(insertionSortedItems)
-//let mergeSortedItems = mergeSort(shuffledItems)         // MERGE SORT DRIVER CODE
-//console.log(mergeSortedItems)
-//mergeComparison()
-
-let quickSortedItems = quickSort(shuffledItems)         // QUICK SORT DRIVER CODE
-qsComparison()
-console.log(quickSortedItems)
-
-/*
-
-let palendromes = [] // this will be used to save me tears, will be cut later
-
+let palendromes: string[] = []
 //2nd send those items into the dataStructures, where itll make each letter a node then push it into the stack / queue
-for (let i = 0; i < items.length; i++) {
-    const word = items[i];
+for (let i = 0; i < dataItems.length; i++) {
+    const word = dataItems[i];
     const { stack, queue } = processItemsWithStackQueue(word);  
 
     // Compare the stack and queue to check for a palindrome
     if (compareStackQueue(stack, queue)) {
       console.log(`${word} is a palindrome`);
       palendromes.push(word)
-    } else {
-      //console.log(`${word} is not a palindrome`);
-    }
+    } 
   };
 
 //3rd bring the stack and queue back to this file where itll be compared, if its a palendrome then itll be printed and added to an array
@@ -61,14 +42,35 @@ while (!stack.isEmpty() && !queue.isEmpty()) {
 }
     return true;
 }
-
 //4th pray
-makeSureIDidThisCorrectly(palendromes);
-function makeSureIDidThisCorrectly(palendromes: string | any[]){
-    if (palendromes.length === 15){ //there are 15 palendromes in magicitems.txt
-        console.log("oh my god it actually works")
-    }else{
-        console.log("sleep is totally overrated anyway")
-    }
+if (palendromes.length === 15){ //there are 15 palendromes in magicitems.txt
+    console.log("All 15 palendromes are accounted for!\n\nNow for the sorting portion")
+}else{
+    console.log("It appears there are some technical difficulties")
 }
-*/
+
+// PART 2 SORTING
+
+const shuffledItems = shuffle(sortItems)
+if (sortItems.length === shuffledItems.length){
+    console.log("all " + shuffledItems.length + " items are shuffled\nReady for sorting!")
+}
+
+let selectSortedItems = selectionSort(shuffle(shuffledItems))    // SELECT SORT DRIVER CODE
+if (fillUpTerminal) {
+    console.log(selectSortedItems);
+}
+let insertionSortedItems = insertionSort(shuffle(shuffledItems))   // INSERTION SORT DRIVER CODE
+if (fillUpTerminal) {
+    console.log(insertionSortedItems)}
+
+let mergeSortedItems = mergeSort(shuffle(shuffledItems))         // MERGE SORT DRIVER CODE
+mergeComparison()
+
+if (fillUpTerminal) {
+    console.log(mergeSortedItems)}
+
+let quickSortedItems = quickSort(shuffle(shuffledItems))         // QUICK SORT DRIVER CODE
+qsComparison()
+if (fillUpTerminal) {
+    console.log(quickSortedItems)}
