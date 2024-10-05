@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fileOps_1 = require("./fileOps");
 const fileOps_2 = require("./fileOps");
 const shuffle_1 = require("./shuffle");
-const insertSort_1 = require("./insertSort");
+const mergeSort_1 = require("./mergeSort");
+const mergeSort_2 = require("./mergeSort");
 //1st read items array whilst cleaning them
 //const filepath = 'miniMagicItems.txt' //mini version of magicItems.txt only containing 15 strings used for testing purposes
 const filepath = './src/text/magicItems.txt';
@@ -16,8 +17,11 @@ if (sortItems.length === shuffledItems.length) {
 }
 //let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
 //console.log(selectSortedItems);
-let insertionSortedItems = (0, insertSort_1.insertionSort)(shuffledItems); // INSERTION SORT DRIVER CODE
-console.log(insertionSortedItems);
+//let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
+//console.log(insertionSortedItems)
+let mergeSortedItems = (0, mergeSort_1.mergeSort)(shuffledItems);
+console.log(mergeSortedItems);
+(0, mergeSort_2.mergeComparison)();
 /*
 
 let palendromes = [] // this will be used to save me tears, will be cut later

@@ -4,7 +4,8 @@ import { processItemsWithStackQueue, Queue, Stack } from './dataStructure'
 import { shuffle } from './shuffle';
 import { selectionSort } from './selectSort';
 import { insertionSort } from './insertSort';
-
+import { mergeSort } from './mergeSort';
+import { mergeComparison } from './mergeSort';
 
 //1st read items array whilst cleaning them
 
@@ -21,8 +22,12 @@ if (sortItems.length === shuffledItems.length){
 
 //let selectSortedItems = selectionSort(shuffledItems)    // SELECT SORT DRIVER CODE
 //console.log(selectSortedItems);
-let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
-console.log(insertionSortedItems)
+//let insertionSortedItems = insertionSort(shuffledItems)   // INSERTION SORT DRIVER CODE
+//console.log(insertionSortedItems)
+let mergeSortedItems = mergeSort(shuffledItems)
+console.log(mergeSortedItems)
+mergeComparison()
+
 /*
 
 let palendromes = [] // this will be used to save me tears, will be cut later
