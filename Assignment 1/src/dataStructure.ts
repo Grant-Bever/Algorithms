@@ -15,7 +15,7 @@ export class Stack {
     this.top = null;
   }
 
-  // FIRST IN 
+  // LAST IN 
   push(data: string): void {
     const newNode = new node(data);
     newNode.next = this.top;
@@ -47,7 +47,7 @@ export class Queue {
     this.front = null;
     this.rear = null; 
   }
-  //LAST IN
+  // FIRST IN
   enqueue(data: string): void {
     const newNode = new node(data);
     if (this.rear === null) {        
@@ -57,7 +57,7 @@ export class Queue {
       this.rear = newNode;           
     }
   }
-  //FIRST OUT
+  // FIRST OUT
   dequeue(): string | null {
     if (this.front === null) return null; // If queue is empty, then... its empty
     const dequeuedNode = this.front;
