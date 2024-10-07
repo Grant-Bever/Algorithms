@@ -13,7 +13,7 @@ import { qsComparison } from './quickSort';
 // Hello Prof. Labouseur if you run npm start into the terminal as the code is it will show you the palendromes and the number of comparisons for the 4 sorts but it will not print the sorted arrays.
 // if you would like to completely fill up the screen with the sorted arrays so you can check if it works. Set the boolean below to true (you may have to run tsc before a subsequent npm start)
 
-let fillUpTerminal:boolean = false
+let fillUpTerminal:boolean = true
 
 const filepath = './src/text/magicItems.txt'
 //1st bring magic items from file into array whilst cleaning it up
