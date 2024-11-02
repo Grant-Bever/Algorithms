@@ -1,0 +1,162 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{multicol} % For multiple columns
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\usepackage{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\scriptsize, 
+  numbers=left,                      
+  numberstyle=\tiny,                
+  frame=single,                      
+  breaklines=true,                   
+}
+
+
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE CMPT 435L ALGORITHMS\\
+    \LARGE Assignment 2\\[0.5em]
+    \large November 1st 2024 \\[0.5em]
+    \large Jonathan "Grant" Bever\\[0.5em]
+    
+    \small\href{https://github.com/Grant-Bever/CMPT435L_Algo}{Link to github repo}
+    \par
+\endgroup
+\rule{\textwidth}{0.3pt}
+
+
+\noindent\ \textbf{PART 1: Linear and Binary Search}
+\vspace{.5cm}
+
+\noindent \centering The Linear Search algorithm is about as simple as a search algorithm gets, it works by looping through an array looking for an item, and comparing one by one until the search item is found. 
+
+\vspace{.2cm}
+
+\centering As the name implies the asymptotic time is O(n) (linear). We can see this very clearly since the algorithm only consists of a single loop, furthermore, we can also observe that its execution time increases linearly with the size of the input array. My implementation is as follows.
+
+
+\vspace{.2cm}
+
+\begin{lstlisting}
+export function linearSearch(arr: any[], searchItems: any[]): void{
+    let totalComparisons = 0;
+
+    for (const item of searchItems) {
+        let comparisons = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            comparisons++;  
+            if (arr[i] === item) {
+                break;
+            }
+        }
+        totalComparisons += comparisons;
+    }
+    const avgComparisons = parseFloat((totalComparisons / searchItems.length).toFixed(2));
+    console.log(`Total Comparisons: ${totalComparisons}`);
+    console.log(`Average Comparisons: ${avgComparisons}`);
+
+}
+\end{lstlisting}
+
+\centering When searching for all 42 random items through 666 magic items, it took on average 13755.1 comparisons for the whole search, with each individual search taking an average of 328.63 comparisons. The lowest total comparisons I recorded was 12556 while the highest was 15484. 
+
+\vspace{.2cm}
+
+\centering As Linear Search is a simple search algorithm it is best suited for simple arrays with a small length, because of its linear nature it becomes much less viable when the array size increases. 
+
+\newpage
+
+
+\centering \textbf{Binary Search}
+
+\vspace{.4cm}
+
+\centering The Binary Search algorithm is a much more efficient search algorithm, it works by starting with the middle value of the array, comparing the target value, then goes in the middle of whichever side the target was on (lower or higher) until the target value is reached. 
+
+\vspace{.2cm}
+\centering Due to the divide and conquer methodology used in this algorithm its asymptotic running time is O(log\textit{n})
+
+\vspace{.2cm}
+
+\begin{lstlisting}
+export function binarySearch(arr: string[], searchItems: string[]): void {
+    let totalComparisons = 0;
+
+    for (const item of searchItems) {
+        let comparisons = 0;
+        let left = 0;
+        let right = arr.length - 1;
+
+        while (left <= right) {
+            comparisons++; 
+            const mid = Math.floor((left + right) / 2);
+
+            if (arr[mid] === item) {
+                break;
+            } else if (arr[mid] < item) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        totalComparisons += comparisons;
+    }
+    const avgComparisons = parseFloat((totalComparisons / searchItems.length).toFixed(2));
+    console.log(`Total Comparisons: ${totalComparisons}`);
+    console.log(`Average Comparisons: ${avgComparisons}`);
+}
+
+
+\end{lstlisting}
+
+\vspace{.3cm}
+\centering The Binary Search algorithm boasts an average of 356.6 comparisons to search for all 42 items out of the 666 magic items. The average for each individual search was 8.49. Which is much better than what we had for linear search.
+
+\vspace{.5cm}
+\centering While Binary Search is much more efficient than Linear Search it is important to note that in order for Binary Search to function the input array needs to be sorted.
+
+\newpage
+
+\centering \textbf{Results}
+
+\vspace{1.5cm}
+
+
+\begin{tabular}{|c|c|c|}
+    \hline
+          \textbf{Search} & \textbf{AVG Individual Comparisons} & \textbf{AVG Total Comparisons} \\
+          \hline
+         Linear  & 328.63 & 13755.1 \\
+         Binary  & 8.49 & 356.6 \\
+         
+    \hline
+    \end{tabular}
+
+\vspace{.8cm}
+
+\centering As we can see from the table binary search is much more efficient than linear. So much so that there will be cases with our data set that once the linear search has found one item binary might already be done with all of them. With our data set of finding 42 items out of 666 items binary search is 38.6 times faster on average then linear. 
+
+\vspace{.4cm}
+
+\centering While Binary is better in this situation it is important to note that binary is not always the best searching algorithm to use since it requires the array to be sorted and it's a bit harder to work with. 
+
+\vspace{2cm}
+
+\centering While these results are impressive they can be greatly improved by implementing the leetcode connoisseurs' best friend, hashing.
+
+\newpage
+
+\centering \textbf{Part 2: Hashing}
+
+
+
+
+\end{document}
