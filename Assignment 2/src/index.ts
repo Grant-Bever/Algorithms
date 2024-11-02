@@ -38,11 +38,13 @@ let totalComparisons = 0;
     picks.forEach(item => {
         const { value, comparisons } = hashTable.get(item);
         totalComparisons += comparisons;
-        //console.log(`Item: ${item}, Found: ${value !== undefined}, Comparisons: ${comparisons}`);
+        console.log(`Item: ${item}, Found: ${value !== undefined}, Comparisons: ${comparisons}`);
     });
 
     // Calculate and print the average comparisons per search
     const avgComparisons = parseFloat((totalComparisons / picks.length).toFixed(2));
     console.log(`Total Comparisons: ${totalComparisons}`);
     console.log(`Average Comparisons: ${avgComparisons}`);
+
+//hashTable.analyzeHashTable();
 

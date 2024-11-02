@@ -156,7 +156,89 @@ export function binarySearch(arr: string[], searchItems: string[]): void {
 
 \centering \textbf{Part 2: Hashing}
 
+\vspace{.2cm}
+\centering Like Stacks and Queues, a hash table is a data structure with built-in commands to retrieve inputted data. Hash tables are incredibly efficient and if implemented well it can produce an average time complexity for lookups of o(1). It does this by assigning a key - value pair to every element in the array and placing them in buckets (an array containing all values that can be assigned to a key) from there, once we lookup an object with the get() command it takes that object, finds the key for it, then searches the bucket.
+
+\vspace{.3cm}
+\centering The way I implemented assigning a hash code is through taking a string and getting its ASCII value then retrieving its modulo value against the size of the table (250), this method of hashing is simple but effective, with our table being length 250 it is unavoidable that our insert() and get() functions will be O(n) where n is the size of the bucket instead of O(1) since there will be multiple items in each bucket. The average load of each bucket is 2.66 with a standard deviation of 1.70, The highest bucket count I saw in my testing was 10 but the most common was 1. 
+\vspace{.2cm}
+\begin{lstlisting}
+    private makeHashCode(key: string): number {
+        key = key.toUpperCase();
+        let letterTotal = 0;
+        for (let i = 0; i < key.length; i++) {
+            letterTotal += key.charCodeAt(i);
+        }
+        return letterTotal % this.size;
+    }
 
 
+\end{lstlisting}
+
+\vspace{.2cm}
+
+\centering Now that we have our method of getting hashCode we can move onto our other functions, insert() and get().
+
+\begin{minipage}[t]{0.45\textwidth} % Stack column
+  \begin{lstlisting}[caption= insert(), ]
+insert(key: string, value: any): void {
+    const index = this.makeHashCode(key);
+    const bucket = this.table[index];
+    // Check if key already exists and update value if found
+    for (let pair of bucket) {
+        if (pair.key === key) {
+            pair.value = value;
+            return;
+        }
+    }
+    bucket.push({ key, value });
+}
+  \end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth} % Queue column
+  \begin{lstlisting}[caption=get()]
+get(key: string): { value: any | undefined, comparisons: number } {
+    const index = this.makeHashCode(key);
+    const bucket = this.table[index];
+    let comparisons = 0;
+    for (let pair of bucket) {
+        comparisons++; 
+        if (pair.key === key) {
+            return { value: pair.value, comparisons };
+            }
+        }
+    return { value: undefined, comparisons };
+    }
+  \end{lstlisting}
+\end{minipage}
+
+\newpage
+\centering\textbf{Final Results}
+
+\vspace{.8cm}
+
+\centering So how does this compare to our values from earlier?
+
+\vspace{.7cm}
+
+\centering If we add our results from hashing to our table from earlier we get...
+
+\vspace{.4cm}
+
+\begin{tabular}{|c|c|c|}
+    \hline
+          \textbf{Search} & \textbf{AVG Individual} & \textbf{AVG Total} \\
+          \hline
+         Linear  & 328.63 & 13755.1 \\
+         Binary  & 8.49 & 356.6 \\
+         Hash Lookup & 2.32 & 97.7 \\
+         
+    \hline
+    \end{tabular}
+
+    \vspace{.8cm}
+
+\centering As we can see using a hash lookup is much more efficient than the last two algorithms. Searching for the same 42 items out of the same 666 items with a hash lookup is on average 140.78 times faster than using linear search and 3.6 times faster than binary search.
 
 \end{document}

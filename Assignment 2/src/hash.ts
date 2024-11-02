@@ -23,7 +23,6 @@ export class HashTable {
     insert(key: string, value: any): void {
         const index = this.makeHashCode(key);
         const bucket = this.table[index];
-
         // Check if key already exists and update value if found
         for (let pair of bucket) {
             if (pair.key === key) {
@@ -31,8 +30,6 @@ export class HashTable {
                 return;
             }
         }
-        
-        // Add new key-value pair to bucket
         bucket.push({ key, value });
     }
 
@@ -50,7 +47,8 @@ export class HashTable {
         }
         return { value: undefined, comparisons };
     }
-
+    
+    
     // Analyze hash table distribution
     analyzeHashTable(): void {
         const bucketSizes = this.table.map(bucket => bucket.length);
@@ -69,4 +67,6 @@ export class HashTable {
         const stdDev = Math.sqrt(sum / this.size);
         console.log(`Standard Deviation: ${stdDev.toFixed(2)}`);
     }
+
+    
 }
