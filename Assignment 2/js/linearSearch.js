@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.linearSearch = void 0;
 function linearSearch(arr, searchItems) {
+    console.log(arr[0] === searchItems[0]); // Should return true if items match exactly
     let totalComparisons = 0;
     let results = [];
     for (const item of searchItems) {
@@ -18,7 +19,6 @@ function linearSearch(arr, searchItems) {
         results.push(found);
         console.log(`Item: ${item}, Comparisons: ${comparisons}`); //test b
     }
-    // Calculate average comparisons
     const avgComparisons = parseFloat((totalComparisons / searchItems.length).toFixed(2));
     console.log(`Total Comparisons: ${totalComparisons}`);
     console.log(`Average Comparisons: ${avgComparisons}`);

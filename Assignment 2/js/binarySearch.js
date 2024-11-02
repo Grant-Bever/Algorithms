@@ -10,7 +10,7 @@ function binarySearch(arr, searchItems) {
         let right = arr.length - 1;
         let found = false;
         while (left <= right) {
-            comparisons++; // Increment comparisons at each comparison
+            comparisons++;
             const mid = Math.floor((left + right) / 2);
             if (arr[mid] === item) {
                 found = true;
@@ -27,7 +27,6 @@ function binarySearch(arr, searchItems) {
         results.push(found);
         console.log(`Item: ${item}, Comparisons: ${comparisons}`);
     }
-    // Calculate average comparisons
     const avgComparisons = parseFloat((totalComparisons / searchItems.length).toFixed(2));
     console.log(`Total Comparisons: ${totalComparisons}`);
     console.log(`Average Comparisons: ${avgComparisons}`);
