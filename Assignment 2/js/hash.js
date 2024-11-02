@@ -35,7 +35,7 @@ class HashTable {
         const bucket = this.table[index];
         let comparisons = 0;
         for (let pair of bucket) {
-            comparisons++; // Each check counts as a comparison
+            comparisons++;
             if (pair.key === key) {
                 return { value: pair.value, comparisons };
             }

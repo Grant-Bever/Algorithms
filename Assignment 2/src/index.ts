@@ -9,6 +9,7 @@ import { HashTable } from "./hash";
 
 //Second step - pick 42 items then search for them 
 
+
 const filepath = './src/magicItems.txt'
 const magicItems = readFileToArray(filepath)
 
@@ -20,9 +21,9 @@ let picks = pick(sortedItems)
 console.log("\nPerforming Linear Search:\n")
 linearSearch(sortedItems, picks)
 
-// Search for them again
-//console.log("\nPerforming Binary Search\n")
-//binarySearch(sortedItems, picks)
+// Search for them again but better
+console.log("\nPerforming Binary Search\n")
+binarySearch(sortedItems, picks)
 
 //PART 2 ---- Hashing
 
@@ -42,6 +43,6 @@ let totalComparisons = 0;
 
     // Calculate and print the average comparisons per search
     const avgComparisons = parseFloat((totalComparisons / picks.length).toFixed(2));
-    //console.log(`Total Comparisons: ${totalComparisons}`);
-    //console.log(`Average Comparisons: ${avgComparisons}`);
+    console.log(`Total Comparisons: ${totalComparisons}`);
+    console.log(`Average Comparisons: ${avgComparisons}`);
 

@@ -1,6 +1,4 @@
 export function linearSearch(arr: any[], searchItems: any[]): void{
-    console.log(arr[0] === searchItems[0]); // Should return true if items match exactly
-
     let totalComparisons = 0;
 
     let results: boolean[] = [];
@@ -17,7 +15,7 @@ export function linearSearch(arr: any[], searchItems: any[]): void{
         }
         totalComparisons += comparisons;
         results.push(found);
-        console.log(`Item: ${item}, Comparisons: ${comparisons}`); //test b
+        //console.log(`Item: ${item}, Comparisons: ${comparisons}`); //test b
     }
     const avgComparisons = parseFloat((totalComparisons / searchItems.length).toFixed(2));
     console.log(`Total Comparisons: ${totalComparisons}`);

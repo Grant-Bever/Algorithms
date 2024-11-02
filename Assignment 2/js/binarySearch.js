@@ -25,7 +25,7 @@ function binarySearch(arr, searchItems) {
         }
         totalComparisons += comparisons;
         results.push(found);
-        console.log(`Item: ${item}, Comparisons: ${comparisons}`);
+        //console.log(`Item: ${item}, Comparisons: ${comparisons}`);
     }
     const avgComparisons = parseFloat((totalComparisons / searchItems.length).toFixed(2));
     console.log(`Total Comparisons: ${totalComparisons}`);

@@ -4,6 +4,7 @@ const fileOps_1 = require("./fileOps");
 const quickSort_1 = require("./quickSort");
 const pick_1 = require("./pick");
 const linearSearch_1 = require("./linearSearch");
+const binarySearch_1 = require("./binarySearch");
 const hash_1 = require("./hash");
 //First step - sort items 
 //Second step - pick 42 items then search for them 
@@ -14,9 +15,9 @@ let picks = (0, pick_1.pick)(sortedItems);
 // Search for them
 console.log("\nPerforming Linear Search:\n");
 (0, linearSearch_1.linearSearch)(sortedItems, picks);
-// Search for them again
-//console.log("\nPerforming Binary Search\n")
-//binarySearch(sortedItems, picks)
+// Search for them again but better
+console.log("\nPerforming Binary Search\n");
+(0, binarySearch_1.binarySearch)(sortedItems, picks);
 //PART 2 ---- Hashing
 const hashTable = new hash_1.HashTable();
 magicItems.forEach((item, index) => hashTable.insert(item, index));
@@ -30,5 +31,5 @@ picks.forEach(item => {
 });
 // Calculate and print the average comparisons per search
 const avgComparisons = parseFloat((totalComparisons / picks.length).toFixed(2));
-//console.log(`Total Comparisons: ${totalComparisons}`);
-//console.log(`Average Comparisons: ${avgComparisons}`);
+console.log(`Total Comparisons: ${totalComparisons}`);
+console.log(`Average Comparisons: ${avgComparisons}`);
