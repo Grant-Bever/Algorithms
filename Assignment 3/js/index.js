@@ -36,10 +36,10 @@ graphs.forEach((graph, index) => {
 });
 //Part 5 create a Binary Search Tree
 const bst = new binarySearchTree_1.BinarySearchTree();
-// Insert each item into the BST
+// Insert each item into the BST, printing the path along the way
 items.forEach(item => {
     bst.insert(item);
 });
-// Print the entire tree using in-order traversal
+//Part 6 Print the entire tree using in-order traversal
 console.log("\nIn-order Traversal of the BST:");
 bst.inOrderTraversal();

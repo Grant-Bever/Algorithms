@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGraphData = getGraphData;
 exports.getItems = getItems;
 const fs = __importStar(require("fs"));
+// Reads the data from graphs1 but works for other files of the same format
 function getGraphData(filename) {
     const data = fs.readFileSync(filename, 'utf-8').split('\n');
     const graphs = [];

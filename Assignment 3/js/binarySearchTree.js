@@ -27,7 +27,7 @@ class BinarySearchTree {
         if (value < node.value) {
             if (node.left === null) {
                 node.left = new LeafNode(value);
-                console.log(`${path}L`); // Print path as Left (L)
+                console.log(`${value}: ${path}L`); // Print path as Left (L)
             }
             else {
                 this._insert(node.left, value, `${path}L, `);
@@ -36,7 +36,7 @@ class BinarySearchTree {
         else {
             if (node.right === null) {
                 node.right = new LeafNode(value);
-                console.log(`${path}R`); // Print path as Right (R)
+                console.log(`${value}: ${path}R`); // Print path as Right (R)
             }
             else {
                 this._insert(node.right, value, `${path}R, `);
