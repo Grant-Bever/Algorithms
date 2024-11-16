@@ -5,11 +5,13 @@ import { BinarySearchTree } from './binarySearchTree';
 
 const graphFile = './files/graphs1.txt'
 const itemFile = './files/magicitems.txt'
+const findFile = './files/magicitems-find-in-bst.txt'
 
 //Part 2 Use text in graphs 2 and use "new graph", "add vertex ", and "add edge"
 
 const graphs = getGraphData(graphFile);
 const items = getItems(itemFile)
+const toFind = getItems(findFile)
 
 //Part 3 use it to create a matrix, adjacency list, and Linked objects for each graph
 graphs.forEach((graph, index) => {
@@ -53,3 +55,17 @@ items.forEach(item => {
 //Part 6 Print the entire tree using in-order traversal
 console.log("\nIn-order Traversal of the BST:");
 bst.inOrderTraversal();
+
+//Part 7 Search for items in BST
+let totalComparisons = 0;
+toFind.forEach(item => {
+    const { path, comparisons } = bst.find(item);
+    totalComparisons += comparisons;
+    console.log(`${item}: Path: ${path} | Comparisons: ${comparisons}`);
+});
+
+// Calculate and print the average comparisons
+const averageComparisons = totalComparisons / toFind.length;
+console.log(`\nAverage Comparisons: ${averageComparisons.toFixed(2)}`);
+
+

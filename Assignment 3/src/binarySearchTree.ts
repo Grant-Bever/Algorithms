@@ -48,4 +48,24 @@ export class BinarySearchTree {
             this.inOrderTraversal(node.right);
         }
     }
+
+    // Find an item in the BST
+    find(value: string): { path: string; comparisons: number } {
+    return this._find(this.root, value, "", 0);
+    }
+
+    private _find(node: LeafNode | null, value: string, path: string, comparisons: number): { path: string; comparisons: number } {
+        if (node === null) {
+            return { path: "NOT FOUND", comparisons };
+        }
+
+        comparisons++;
+        if (value === node.value) {
+            return { path, comparisons };
+        } else if (value < node.value) {
+            return this._find(node.left, value, path + "L, ", comparisons);
+        } else {
+            return this._find(node.right, value, path + "R, ", comparisons);
+        }
+    }
 }
