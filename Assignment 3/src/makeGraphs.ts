@@ -49,7 +49,6 @@ export function toAdjList(graph: Graph): AdjList {
 export function dfs(graph: AdjList, start: number, visited: Set<number> = new Set()) {
     console.log(start); // Print vertex ID
     visited.add(start);
-
     // Visit all the unvisited neighbors
     for (const neighbor of graph[start]) {
         if (!visited.has(neighbor)) {
