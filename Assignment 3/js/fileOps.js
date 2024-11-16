@@ -24,6 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGraphData = getGraphData;
+exports.getItems = getItems;
 const fs = __importStar(require("fs"));
 function getGraphData(filename) {
     const data = fs.readFileSync(filename, 'utf-8').split('\n');
@@ -36,7 +37,6 @@ function getGraphData(filename) {
             continue; // Ignore comments
         if (parts[0] === 'new' && parts[1] === 'graph') {
             // Save and reset for new graph 
-            // need to add end of file 
             if (currentVertices.length > 0 || currentEdges.length > 0) {
                 graphs.push({ vertices: currentVertices, edges: currentEdges });
             }
@@ -60,4 +60,9 @@ function getGraphData(filename) {
         graphs.push({ vertices: currentVertices, edges: currentEdges });
     }
     return graphs;
+}
+// Reads the data from magicitems.txt (or similar files)
+function getItems(filename) {
+    const data = fs.readFileSync(filename, 'utf-8').split('\n');
+    return data.map(line => line.trim()).filter(line => line.length > 0);
 }

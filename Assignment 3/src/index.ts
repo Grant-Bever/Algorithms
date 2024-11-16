@@ -1,12 +1,15 @@
 //Part 1 Take in graphs1, 
-import { getGraphData } from './fileOps';
+import { getGraphData, getItems } from './fileOps';
 import { toMatrix, toAdjList, Matrix, AdjList, dfs, bfs } from './makeGraphs';
+import { BinarySearchTree } from './binarySearchTree';
 
-const filename = './files/graphs1.txt'
+const graphFile = './files/graphs1.txt'
+const itemFile = './files/magicitems.txt'
 
 //Part 2 Use text in graphs 2 and use "new graph", "add vertex ", and "add edge"
 
-const graphs = getGraphData(filename);
+const graphs = getGraphData(graphFile);
+const items = getItems(itemFile)
 
 //Part 3 use it to create a matrix, adjacency list, and Linked objects for each graph
 graphs.forEach((graph, index) => {
@@ -27,9 +30,11 @@ graphs.forEach((graph, index) => {
     Object.entries(adjList).forEach(([vertex, neighbors]) => {
         console.log(`${vertex}: ${neighbors.join(', ')}`);
     });
+
+//Part 4 Run a deapth first and breadth first traversal on the linked objects
     // Run Depth First Search (DFS) starting from the first vertex
     console.log('DFS Traversal:');
-    dfs(adjList, graph.vertices[0]); // Assuming the first vertex is a valid starting point
+    dfs(adjList, graph.vertices[0]); 
 
     // Run Breadth First Search (BFS) starting from the first vertex
     console.log('BFS Traversal:');
@@ -37,5 +42,14 @@ graphs.forEach((graph, index) => {
     console.log('-------------------------');
 });
 
+//Part 5 create a Binary Search Tree
+const bst = new BinarySearchTree();
 
-//Part 4 Run a deapth first and breadth first traversal on the linked objects
+// Insert each item into the BST, printing the path along the way
+items.forEach(item => {
+    bst.insert(item);
+});
+
+//Part 6 Print the entire tree using in-order traversal
+console.log("\nIn-order Traversal of the BST:");
+bst.inOrderTraversal();

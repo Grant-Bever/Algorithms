@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-
+// Reads the data from graphs1 but works for other files of the same format
 export function getGraphData(filename: string) {
     const data = fs.readFileSync(filename, 'utf-8').split('\n');
     const graphs: { vertices: number[]; edges: [number, number][] }[] = [];
@@ -11,8 +11,8 @@ export function getGraphData(filename: string) {
 
         if (parts[0] === '--') continue; // Ignore comments
             if (parts[0] === 'new' && parts[1] === 'graph') {
+
             // Save and reset for new graph 
-            // need to add end of file 
             if (currentVertices.length > 0 || currentEdges.length > 0) {
                 graphs.push({ vertices: currentVertices, edges: currentEdges });
             }
@@ -39,4 +39,9 @@ export function getGraphData(filename: string) {
     }
 
     return graphs;
+}
+// Reads the data from magicitems.txt (or similar files)
+export function getItems(filename: string): string[] {
+    const data = fs.readFileSync(filename, 'utf-8').split('\n');
+    return data.map(line => line.trim()).filter(line => line.length > 0);
 }
