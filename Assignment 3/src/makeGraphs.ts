@@ -44,3 +44,37 @@ export function toAdjList(graph: Graph): AdjList {
 
     return adjList;
 }
+
+// DFS (Depth First Search) Traversal
+export function dfs(graph: AdjList, start: number, visited: Set<number> = new Set()) {
+    console.log(start); // Print vertex ID
+    visited.add(start);
+
+    // Visit all the unvisited neighbors
+    for (const neighbor of graph[start]) {
+        if (!visited.has(neighbor)) {
+            dfs(graph, neighbor, visited);
+        }
+    }
+}
+
+// BFS (Breadth First Search) Traversal
+export function bfs(graph: AdjList, start: number) {
+    const visited = new Set<number>();
+    const queue: number[] = [start];
+    visited.add(start);
+
+    while (queue.length > 0) {
+        const vertex = queue.shift()!;
+        console.log(vertex); // Print vertex ID
+
+        // Visit all unvisited neighbors
+        for (const neighbor of graph[vertex]) {
+            if (!visited.has(neighbor)) {
+                visited.add(neighbor);
+                queue.push(neighbor);
+            }
+        }
+    }
+}
+

@@ -1,6 +1,6 @@
 //Part 1 Take in graphs1, 
 import { getGraphData } from './fileOps';
-import { toMatrix, toAdjList, Matrix, AdjList } from './makeGraphs';
+import { toMatrix, toAdjList, Matrix, AdjList, dfs, bfs } from './makeGraphs';
 
 const filename = './files/graphs1.txt'
 
@@ -27,7 +27,13 @@ graphs.forEach((graph, index) => {
     Object.entries(adjList).forEach(([vertex, neighbors]) => {
         console.log(`${vertex}: ${neighbors.join(', ')}`);
     });
+    // Run Depth First Search (DFS) starting from the first vertex
+    console.log('DFS Traversal:');
+    dfs(adjList, graph.vertices[0]); // Assuming the first vertex is a valid starting point
 
+    // Run Breadth First Search (BFS) starting from the first vertex
+    console.log('BFS Traversal:');
+    bfs(adjList, graph.vertices[0]);
     console.log('-------------------------');
 });
 
