@@ -10,7 +10,7 @@ export function getGraphData(filename: string) {
         const parts = line.trim().split(' ');
 
         if (parts[0] === '--') continue; // Ignore comments
-        else if (parts[0] === 'new' && parts[1] === 'graph') {
+            if (parts[0] === 'new' && parts[1] === 'graph') {
             // Save and reset for new graph 
             // need to add end of file 
             if (currentVertices.length > 0 || currentEdges.length > 0) {
@@ -18,10 +18,18 @@ export function getGraphData(filename: string) {
             }
             currentVertices = [];
             currentEdges = [];
-        } else if (parts[0] === 'add' && parts[1] === 'vertex') {
-            currentVertices.push(parseInt(parts[2]));
-        } else if (parts[0] === 'add' && parts[1] === 'edge') {
-            currentEdges.push([parseInt(parts[2]), parseInt(parts[4])]);
+        }
+        if (parts[0] === 'add' && parts[1] === 'vertex') {
+                const vertex = parseInt(parts[2], 10);
+                if (!currentVertices.includes(vertex)) {
+                    currentVertices.push(vertex);
+                }
+            }
+        
+        if (parts[0] === 'add' && parts[1] === 'edge') {
+            const v1 = parseInt(parts[2], 10);
+            const v2 = parseInt(parts[4], 10);
+            currentEdges.push([v1, v2]);
         }
     }
 
