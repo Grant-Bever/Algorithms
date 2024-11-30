@@ -1,14 +1,26 @@
 {
   "name": "assignment-4",
   "version": "1.0.0",
-  "description": "",
+  "description": "graphs and trees",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node src/index.ts"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grant-Bever/CMPT435L_Algo.git#main"
+  },
+  "author": "Grant Bever",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Grant-Bever/CMPT435L_Algo/issues"
+  },
+  "homepage": "https://github.com/Grant-Bever/CMPT435L_Algo/tree/main#readme",
   "dependencies": {
-    "ts": "^0.2.2"
+    "fs": "^0.0.1-security",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
   }
 }
