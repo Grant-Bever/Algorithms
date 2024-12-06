@@ -5,9 +5,8 @@ exports.toAdjList = toAdjList;
 function toAdjList(graph) {
     const adjList = {};
     graph.vertices.forEach(vertex => (adjList[vertex] = []));
-    graph.edges.forEach(([v1, v2]) => {
-        adjList[v1].push(v2);
-        adjList[v2].push(v1);
+    graph.edges.forEach(([from, to, weight]) => {
+        adjList[from].push({ to, weight });
     });
     return adjList;
 }
