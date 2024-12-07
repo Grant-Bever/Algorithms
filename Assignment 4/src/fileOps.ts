@@ -1,59 +1,54 @@
-//from assignment 3, needs modification
+import { Graph } from './makeGraph';
 import * as fs from 'fs';
-// Reads the data from graphs1 but works for other files of the same format
 
-export interface Graph {
-    vertices: number[];
-    edges: [number, number, number][]; // [from, to, weight]
-}
 export function getGraphData(filename: string): Graph[] {
     const data = fs.readFileSync(filename, 'utf-8').split('\n');
     const graphs: Graph[] = [];
     let currentVertices: number[] = [];
-    let currentEdges: [number, number, number ][] = [];
+    let currentEdges: [number, number, number][] = [];
 
     for (const line of data) {
-        if (line.startsWith('--')) continue;
+        // Skip comments and empty lines
+        if (line.trim().startsWith('--') || line.trim() === '') continue;
 
-        if (line === '') {
-            // End of current graph
-            if (currentVertices.length > 0 || currentEdges.length > 0) {
-                graphs.push({ vertices: currentVertices, edges: currentEdges });
-                currentVertices = [];
-                currentEdges = [];
-            }
-            continue;
-        }
-
-        const parts = line.trim().split(' ');
+        // Split on spaces and filter out empty strings
+        const parts = line.trim().split(/\s+/).filter(Boolean);
 
         if (parts[0] === 'new' && parts[1] === 'graph') {
-            // Save and reset for new graph 
             if (currentVertices.length > 0 || currentEdges.length > 0) {
-                graphs.push({ vertices: currentVertices, edges: currentEdges });
+                graphs.push({ 
+                    vertices: [...currentVertices], 
+                    edges: [...currentEdges] 
+                });
             }
             currentVertices = [];
             currentEdges = [];
         }
-        if (parts[0] === 'add' && parts[1] === 'vertex') {
-                const vertex = parseInt(parts[2], 10);
-                if (!currentVertices.includes(vertex)) {
-                    currentVertices.push(vertex);
-                }
+        else if (parts[0] === 'add' && parts[1] === 'vertex') {
+            const vertex = parseInt(parts[2], 10);
+            if (!isNaN(vertex) && !currentVertices.includes(vertex)) {
+                currentVertices.push(vertex);
             }
-        
-        if (parts[0] === 'add' && parts[1] === 'edge') {
-            const from = parseInt(parts[2], 10);
-            const to = parseInt(parts[4], 10);
-            const weight = parseInt(parts[5], 10);
-            currentEdges.push([ from, to, weight ]);
+        }
+        else if (parts[0] === 'add' && parts[1] === 'edge') {
+            // Handle edge lines like "add edge 2 - 3 5"
+            const allNumbers = parts
+                .filter(part => part !== '-' && part !== 'add' && part !== 'edge')
+                .map(num => parseInt(num, 10))
+                .filter(num => !isNaN(num));
+
+            if (allNumbers.length >= 3) {
+                const [from, to, weight] = allNumbers;
+                currentEdges.push([from, to, weight]);
+            }
         }
     }
-
-    // Push the final graph
+    // Don't forget the last graph
     if (currentVertices.length > 0 || currentEdges.length > 0) {
-        graphs.push({ vertices: currentVertices, edges: currentEdges });
+        graphs.push({ 
+            vertices: [...currentVertices], 
+            edges: [...currentEdges] 
+        });
     }
-
     return graphs;
 }
