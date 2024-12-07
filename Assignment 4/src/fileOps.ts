@@ -1,6 +1,10 @@
-import { Graph } from './makeGraph';
 import * as fs from 'fs';
 import { Spice } from './spice';
+
+export interface Graph {
+    vertices: number[];
+    edges: [number, number, number][]; // [from, to, weight]
+}
 
 export function getGraphData(filename: string): Graph[] {
     const data = fs.readFileSync(filename, 'utf-8').split('\n');

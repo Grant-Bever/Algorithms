@@ -1,4 +1,4 @@
-import { Graph } from './makeGraph';
+import { Graph } from './fileOps';
 
 interface BellmanFordResult {
     distances: Map<number, number>;
@@ -47,7 +47,7 @@ export function bellmanFord(graph: Graph, source: number): BellmanFordResult {
         if (distances.get(target) === Infinity) {
             return path;
         }
-        
+
         while (current !== null) {
             path.unshift(current);
             current = predecessors.get(current)!;

@@ -1,5 +1,5 @@
 import { getGraphData, getSpiceData } from "./fileOps"
-import { Graph } from "./makeGraph"
+import { Graph } from "./fileOps"
 import { bellmanFord } from "./bellmanFord"
 import * as spice from "./spice" 
 // 1 modify graph maker from assignment 3 to accept directed and weighted graphs
