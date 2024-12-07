@@ -145,5 +145,77 @@ The final phase is the negative cycle detection, which makes one last pass throu
 
 \vspace{.3cm}
 
+The knapsack problem is a optimization problem where the goal is to select items to maximize total value without exceeding a given capacity. For our spice heist we are using a fractional knapsack where we treat spices as items and each spice has a quantity (representing weight) and a unitPrice (value per unit).
+\vspace{.2cm}
+The knapsack has a fixed capacity that limits how much it can hold, and the objective is to fill it with the most valuable combination of spices. 
+
+\vspace{.3cm}
+\centering We can implement this using this code. 
+
+\vspace{.3cm}
+
+\begin{lstlisting}
+export function solveFractionalKnapsack(spices: Spice[], capacity: number): Knapsack {
+const knapsack: Knapsack = {
+    capacity,
+    contents: [],
+    totalValue: 0
+};
+let remainingCapacity = capacity;
+const spiceInventory = spices.map(s => ({...s})); // Create copy to track remaining quantities
+for (const spice of spiceInventory) {
+    if (remainingCapacity <= 0) break;
+    const scoopsToTake = Math.min(spice.quantity, remainingCapacity);
+    if (scoopsToTake > 0) {
+       knapsack.contents.push({
+            spiceName: spice.name,
+            scoops: scoopsToTake
+        });
+        knapsack.totalValue += scoopsToTake * (spice.unitPrice || 0);
+        remainingCapacity -= scoopsToTake;
+    }
+}
+return knapsack;
+}
+\end{lstlisting}
+
+\vspace{.2cm}
+\centering This implementation works by taking in a list of spices with their quantities and unit prices, along with the knapsack's capacity then iterating through the spices, calculating how much to take based on the remaining capacity, and updating the total value. After that it outputs A Knapsack object containing the total value and the list of spices included.
+
+\newpage
+
+\centering \textbf{RESULTS}
+
+\vspace{.3cm}
+
+\centering After running the spice heist these were the results I got.
+
+\vspace{.2cm}
+
+\noindent Knapsack of capacity 1 is worth 9 quatloos and contains 1 scoop of orange.
+
+\vspace{.1cm}
+
+Knapsack of capacity 6 is worth 38 quatloos and contains 2 scoops of orange, 4 scoops of blue.
+
+\vspace{.1cm}
+
+Knapsack of capacity 10 is worth 58 quatloos and contains 2 scoops of orange, 8 scoops of blue.
+
+\vspace{.1cm}
+
+Knapsack of capacity 20 is worth 74 quatloos and contains 2 scoops of orange, 8 scoops of blue, 6 scoops of green, 4 scoops of red.
+
+\vspace{.1cm}
+
+Knapsack of capacity 21 is worth 74 quatloos and contains 2 scoops of orange, 8 scoops of blue, 6 scoops of green, 4 scoops of red.
+
+\vspace{.2cm}
+
+\centering The data gathered looks correct for all 5 knapsacks except for knapsack 5 which contains the same data as knapsack 4 is what I would say if that wasn't because there's only 20 weight in total, meaning they have the same data because they're both large enough to collect all the spice. 
+
+\vspace{.2cm}
+
+\centering The running time of this algorithm is \(O(n log n)\) where n is the number of spices because of its divide and conquer methodology like merge sort, when sorting the spices by unit price then choosing them. 
 
 \end{document}

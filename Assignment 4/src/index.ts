@@ -32,7 +32,6 @@ graphData.forEach((graph, index) => {
 });
 
 // Part 5 run knapsack to gather the spice from arrakis 
-
 const { spices, knapsacks } = getSpiceData(spicefilename);
 
 // Process each knapsack

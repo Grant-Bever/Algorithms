@@ -39,7 +39,6 @@ for (const spice of spiceInventory) {
         remainingCapacity -= scoopsToTake;
     }
 }
-
 return knapsack;
 }
 
