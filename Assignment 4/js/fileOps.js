@@ -24,6 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGraphData = getGraphData;
+exports.getSpiceData = getSpiceData;
 const fs = __importStar(require("fs"));
 function getGraphData(filename) {
     const data = fs.readFileSync(filename, 'utf-8').split('\n');
@@ -72,4 +73,32 @@ function getGraphData(filename) {
         });
     }
     return graphs;
+}
+function getSpiceData(filename) {
+    const data = fs.readFileSync(filename, 'utf-8').split('\n');
+    const spices = [];
+    const knapsacks = [];
+    for (const line of data) {
+        if (line.trim().startsWith('--') || line.trim() === '')
+            continue;
+        if (line.includes('spice name')) {
+            // spice line
+            const parts = line.split(';').map(part => part.trim());
+            const name = parts[0].split('=')[1].trim();
+            const totalPrice = parseFloat(parts[1].split('=')[1]);
+            const quantity = parseInt(parts[2].split('=')[1]);
+            spices.push({ name, totalPrice, quantity });
+        }
+        else if (line.includes('knapsack capacity')) {
+            // knapsack line
+            const capacity = parseInt(line.split('=')[1]);
+            knapsacks.push(capacity);
+        }
+    }
+    spices.forEach(spice => {
+        spice.unitPrice = spice.totalPrice / spice.quantity;
+    });
+    // Sort spices by unit price in descending order
+    spices.sort((a, b) => (b.unitPrice || 0) - (a.unitPrice || 0));
+    return { spices, knapsacks };
 }
