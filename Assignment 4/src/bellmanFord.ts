@@ -12,7 +12,6 @@ export function bellmanFord(graph: Graph, source: number): BellmanFordResult {
     const predecessors = new Map<number, number | null>();
     const vertices = graph.vertices;
     const edges = graph.edges;
-
     // Initialize distances and predecessors
     vertices.forEach(vertex => {
         distances.set(vertex, Infinity);
